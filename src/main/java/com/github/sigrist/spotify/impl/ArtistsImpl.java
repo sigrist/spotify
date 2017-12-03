@@ -1,5 +1,6 @@
 package com.github.sigrist.spotify.impl;
 
+import com.github.sigrist.spotify.Artist;
 import com.github.sigrist.spotify.Artists;
 import com.github.sigrist.spotify.Spotify;
 
@@ -21,4 +22,8 @@ public class ArtistsImpl implements Artists {
 		return new FollowedArtistsImpl(spotify());
 	}
 
+	@Override
+	public Artist artist(String spotifyId) {
+		return new ArtistImpl(spotify(), spotifyId);
+	}
 }

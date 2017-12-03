@@ -1,5 +1,6 @@
 package com.github.sigrist.spotify.impl;
 
+import com.github.sigrist.spotify.Profile;
 import com.github.sigrist.spotify.Spotify;
 import com.github.sigrist.spotify.Users;
 
@@ -19,6 +20,11 @@ public class SpotifyImpl implements Spotify {
 	@Override
 	public Users users() {
 		return new UsersImpl(this);
+	}
+	
+	@Override
+	public Profile profile() {
+		return new ProfileImpl(this);
 	}
 
 }

@@ -6,32 +6,48 @@ public class SpotifyTest {
 
 	public static void main(String[] args) {
 		Spotify spotify = new SpotifyImpl(
-				"BQB9t_mDs8GodCuABPEd6mAmkUH5rZDXV4CpOAUoEPjiM8jOCBbqdCZC8HOxPIftRq9SMT9OWcwXjOq1vuqjDBGzwOv2QO-s7fxmdli2zVLWLk1zICxYyc0jwgf9-OOUfVUbM0nGzalSSGUh-_RKhK0mw9fxXf_CIUDy5eY9N3iBdH-FfQBCGwrRbiyKX6DjQnyIifBVtdZ7jWI1cjDw8AH2lQ-wng7t0FHxGrmOO8A3bBCBuimpIb3n6AHSLRq2FG5c1zX_I8yYqlA");
+				"BQBqsGZYDPfhLApxUdyLx4T2J4T4yZ2no_LnnxckbgQpe7Ff7850XjAsm_BW376soATffWYs4l3kYRyC_u_Gkbymhdym83xlUMhw52VjWBKqkIPYXT40oB2opFW_beJiVe5_l7XuB0hsVaq76wbETTA6vFkWug4S5sSwjQBlOGzVnxi2RhJ_gb3RH1yXICQYuWZulpd8oII5h84ULrYe47B_y4KHPZrFl9wBOWmI3SZAw5lkBAQgRnUFVvDGSRi6BO-E2ulWZzIM1MvIcg");
 
-		CurrentUser me = spotify.users().me();
+		
+		Profile profile = spotify.profile();
+
+//		CurrentUser me = spotify.users().me();
+		
+		CurrentUser me = profile.me();
+		
 
 		System.out.println(me.displayName());
 		System.out.println(me.uri());
 		System.out.println(me.id());
 
-		// TODO Aqui eh mais interessante ter tudo ou o usuario eh obrigado a saber que
-		// eh paginado!?
-		Artists artists = me.artists();
-		FollowedArtists followedArtists = artists.following();
+		System.out.println("Artistas");
+		FollowedArtists followedArtists = profile.followedArtists();
 
 		followedArtists.forEach(artist -> {
 			System.out.println(artist.id() + ": " + artist.name() + " -> " + artist.popularity());
 		});
 
-		User diego = spotify.users().get("diego.salvaia");
-		System.out.println(diego.displayName());
-		System.out.println(diego.uri());
-		System.out.println(diego.id());
+		
+		System.out.println("Playlists");
+		FollowedPlaylists followedPlaylists = profile.followedPlaylists();
 
-		followedArtists = artists.following();
-		followedArtists.forEach(artist -> {
-			System.out.println(artist.id() + ": " + artist.name() + " -> " + artist.popularity());
+		followedPlaylists.forEach(playlist -> {
+			System.out.println(playlist.id()+": "+playlist.name() + "("+playlist.publicPlaylist()+")");
 		});
+
+		//
+//		User diego = spotify.users().get("diego.salvaia");
+//		System.out.println(diego.displayName());
+//		System.out.println(diego.uri());
+//		System.out.println(diego.id());
+//
+//		Artist angra = me.artists().artist("7IAXZaLTb6nkJr8RmVPn5y");
+//		
+//		System.out.println(angra.id());
+//		System.out.println(angra.name());
+//		System.out.println(angra.popularity());
+//		
+//		Albums albuns = angra.albuns();
 
 	}
 }

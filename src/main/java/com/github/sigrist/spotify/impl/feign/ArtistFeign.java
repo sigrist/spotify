@@ -13,4 +13,7 @@ public interface ArtistFeign {
 	@RequestLine("GET /v1/me/following?type=artist&limit={limit}&after={after}")
 	JsonNode followedArtists(@Param("limit") Integer limit, @Param("after") String after);
 
+	@RequestLine("GET /v1/artists/{id}")
+	JsonNode artist(@Param("id") String spotifyId);
+
 }

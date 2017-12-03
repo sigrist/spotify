@@ -7,4 +7,6 @@ public interface Artist {
 	String name();
 	Integer popularity();
 	
+	Albums albuns();
+	
 }
